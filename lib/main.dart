@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_minipro2/firebase_options.dart';
 import 'package:flutter_minipro2/page/SysHome.dart';
 import 'package:flutter_minipro2/page/rider/Home.dart';
 import 'package:flutter_minipro2/page/user/AddProduct.dart';
@@ -8,7 +11,15 @@ import 'package:flutter_minipro2/page/user/ProductSend.dart';
 import 'package:flutter_minipro2/page/user/SearchUser.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart'; // Import ครั้งเดียวก็เพียงพอ
 
-void main() {
+void main() async{
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+  );
+
+
   runApp(const MyApp());
 }
 
